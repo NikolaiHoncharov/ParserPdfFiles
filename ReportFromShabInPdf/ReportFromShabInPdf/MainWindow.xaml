@@ -1,0 +1,78 @@
+﻿<Window x:Class="ReportFromShabInPdf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReportFromShabInPdf"
+        mc:Ignorable="d"
+        Title="Parser"
+        Height="450" Width="550" 
+        Icon="/Resources/balls.png"
+        AllowsTransparency="True" 
+        WindowStyle="None" WindowState="Normal"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        BorderBrush="Black" BorderThickness="1">
+    <DockPanel x:Name="mainDock" VerticalAlignment="Top">
+        <Grid DockPanel.Dock="Top" MouseDown="Grid_MouseDown" Height="25" Background="#48365a">
+            <Image Source="/Resources/balls.png" Height="25" Margin="0,0,498.8,0" VerticalAlignment="Bottom"></Image>
+            <Label FontFamily="Trebuchet MS" FontSize="13" Foreground="White" Margin="212,0,212,0" >Download Reports</Label>
+            <Button x:Name="btnExit" Click="BtnExit_Click" HorizontalAlignment="Right" FontFamily="Marlett" Content="&#x072;" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="25" Width="20" Background="#E7EFF2"></Button>
+            <Button x:Name="btnMin" Click="BtnMin_Click" HorizontalAlignment="Right" FontFamily="Marlett" Content="&#x030;" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="25" Width="20" Margin="0,0,20.8,0" Background="#E7EFF2"></Button>
+        </Grid>
+        <WrapPanel x:Name="wrpPnlOne" Height="40"  DockPanel.Dock="Top" Margin="0,10,0,10">
+            <WrapPanel Margin="5,0,0,0">
+                <Label Width="50" Margin="0,0,5,5" FontFamily="Trebuchet MS" FontSize="16" VerticalAlignment="Center">Start:</Label>
+                <DatePicker x:Name="dateStart" Width="150" BorderBrush="Transparent" Margin="5,0,0,5" Background="Transparent" FontFamily="Trebuchet MS" FontSize="18"/>
+            </WrapPanel>
+            <WrapPanel Margin="10,0,0,0">
+                <Label Width="50" Margin="0,0,5,5" FontFamily="Trebuchet MS" FontSize="16" VerticalAlignment="Center">End:</Label>
+                <DatePicker x:Name="dateEnd" Width="150" BorderBrush="Transparent" Margin="5,0,0,5" Background="Transparent" FontFamily="Trebuchet MS" FontSize="18"/>
+            </WrapPanel>
+            <WrapPanel Margin="10,0,0,5" Height="35">
+                <Button x:Name="btnDownloadRp" Click="BtnDownloadRp_Click" Content="Download"/>
+            </WrapPanel>
+        </WrapPanel>
+        <WrapPanel DockPanel.Dock="Top">
+            <TreeView Margin="10,0,0,0" Name="treeFileSystem" BorderBrush="Transparent" FontFamily="Trebuchet MS" FontSize="16"
+                  TreeViewItem.Expanded="item_Expanded" KeyDown="treeFileSystem_KeyDown" SelectedItemChanged="treeFileSystem_SelectedItemChanged"
+                  MouseDoubleClick="treeFileSystem_MouseDoubleClick" >
+            </TreeView>
+        </WrapPanel>
+    </DockPanel>
+    
+    
+    <Window.Resources>
+        <Style  TargetType="Button">
+            <Setter Property="Width" Value="90" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Background" Value="#E7EFF2" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontFamily" Value="Trebuchet MS" />
+            <Setter Property="FontSize" Value="16" />
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard Name="rotateStoryboardBegin">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" From="16" To="18" Duration="0:0:0.3">
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Button.MouseLeave">
+                    <EventTrigger.Actions>
+
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:0.2">
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+</Window>
